@@ -1,37 +1,23 @@
 package com.cg.usermanagement;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import java.net.URI;
 
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import com.cg.usermanagement.dao.UpdateDao;
 import com.cg.usermanagement.entity.UserDto;
-import com.cg.usermanagement.service.UpdateService;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes=EdituserApplication.class)
+@SpringBootTest
 
 class EdituserApplicationTests
 {
-	@MockBean
-	UpdateDao repository;
-	@Autowired
-	UpdateService updateserviceobj;
 	
 	@Test
 	public void test1() throws Exception
