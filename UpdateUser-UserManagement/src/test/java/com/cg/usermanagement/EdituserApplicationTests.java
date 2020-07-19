@@ -1,44 +1,43 @@
 package com.cg.usermanagement;
 
-import static org.junit.Assert.assertEquals;
-import java.net.URI;
-
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
 import com.cg.usermanagement.entity.UserDto;
+import com.cg.usermanagement.exception.InvalidDetailsException;
+import com.cg.usermanagement.service.UpdateServiceImpl;
 
 @SpringBootTest
 
 class EdituserApplicationTests
 {
+ @Autowired
+ UpdateServiceImpl service;
+	@Test
+	public void testUpdateUser_Positive1() throws Exception
+	{
+		UserDto user=new UserDto(384,"pydipalabhavana@gmail.com","Anusha","Anu");
+       UserDto c=service.updateUser(user);
+       //Asserstions.assertEquals()
+     Assertions.assertEquals(c.getUserid(),user.getUserid());
+	}
+	@Test
+	public void testUpdateUser_Positive2() throws Exception
+	{
+		UserDto user=new UserDto(382,"teju123@gmail.com","Madhuri","Madhu123");
+       UserDto c=service.updateUser(user);
+       //Asserstions.assertEquals()
+     Assertions.assertEquals(c.getUserid(),user.getUserid());
+	}
 	
 	@Test
-	public void test1() throws Exception
+	public void testUpdateUser_Negative1() throws InvalidDetailsException 
 	{
-		   RestTemplate restTemplate = new RestTemplate();
-		     
-		    final String baseUrl = "http://localhost:" + 8975 + "/UserManagement/updateuser";
-		    URI uri = new URI(baseUrl);
-		    UserDto userdto=new UserDto();
-		    userdto.setUserid(384);
-		    userdto.setEmail("anu@gmail.com");
-		    userdto.setFirstName("Anu");
-		    userdto.setPassword("fruit");
-		    HttpHeaders headers = new HttpHeaders();
-		    headers.set("X-COM-PERSIST", "Updated Succesfully");
-		    HttpEntity<UserDto> request = new HttpEntity<>(userdto, headers);
-			 ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.PUT,request,String.class);
-			 System.out.println(result);
-			 assertEquals("Updated Succesfully", result.getBody());
+		UserDto user=new UserDto(987,"pydipalabhavana@gmail.com","Anusha","Anu");
+        UserDto c=service.updateUser(user);
+       System.out.println(user.getUserid());
+     Assertions.assertNotEquals(c.getUserid(),user.getUserid());
 	}
-    
-	
-    
+
 }

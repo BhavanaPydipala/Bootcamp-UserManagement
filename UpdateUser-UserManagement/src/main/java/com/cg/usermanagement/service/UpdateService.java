@@ -5,7 +5,7 @@ import com.cg.usermanagement.exception.InvalidDetailsException;
 
 public interface UpdateService {
 
-	String updateUser(UserDto userDto) throws InvalidDetailsException;
+	UserDto updateUser(UserDto userDto) throws InvalidDetailsException ;
 
 	
 }

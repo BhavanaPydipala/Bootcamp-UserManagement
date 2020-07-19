@@ -1,5 +1,7 @@
 package com.cg.usermanagement.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,15 +21,16 @@ public class UserManagementController
 	@Autowired
 	UpdateService updateserviceobj;
 	
-	/*Updating a User*/
-	@PutMapping(value="/updateuser")
-	public String updateUser(@RequestBody UserDto userDto) throws InvalidDetailsException 
+	static  Logger logger=LoggerFactory.getLogger(UserManagementController.class);
+
+	
+	/*Updating an exisiting User*/
+	/*--------------------------------------*/
+	@PutMapping("/UpdateUser")
+	public UserDto updateUser(@RequestBody UserDto userDto) throws InvalidDetailsException 
 	{
-		String result= updateserviceobj.updateUser(userDto);
-			return result;
-		
-		
-		
+		logger.warn("Request{}",userDto);
+		return updateserviceobj.updateUser(userDto);
 	}
 	
 }

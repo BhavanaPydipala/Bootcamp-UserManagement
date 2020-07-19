@@ -44,6 +44,17 @@ public class UserDto
 		return "UserDto [userid=" + userid + ", email=" + email + ", firstName=" + firstName + ", password=" + password
 				+ "]";
 	}
+	public UserDto(int userid, String email, String firstName, String password) {
+		super();
+		this.userid = userid;
+		this.email = email;
+		this.firstName = firstName;
+		this.password = password;
+	}
+	public UserDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
        
 }
 
